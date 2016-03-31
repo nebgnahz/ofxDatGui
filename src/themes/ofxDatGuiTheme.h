@@ -35,17 +35,17 @@ inline static bool ofxDatGuiIsRetina()
 class ofxDatGuiTheme{
 
     public:
-    
+
     /*
         This is the base class for all custom themes.
         The properites here can be overridden by any class that extends this class.
     */
-    
+
         ofxDatGuiTheme(bool autoInitialize = false)
         {
             if (autoInitialize) init();
         }
-    
+
         void init()
         {
             if (ofxDatGuiIsRetina()){
@@ -72,16 +72,16 @@ class ofxDatGuiTheme{
             icon.dropdown->load(icon.dropdownPath);
             icon.rainbow->load(icon.rainbowPath);
         }
-    
+
     /*
         gui & component colors
     */
-    
+
         struct {
-        
+
         // global gui background color //
             ofColor guiBackground = ofColor::fromHex(0x303030);
-        
+
         // general colors that are shared by all components //
             ofColor label = ofColor::fromHex(0xEEEEEE);
             ofColor icons = ofColor::fromHex(0xEEEEEE);
@@ -89,33 +89,33 @@ class ofxDatGuiTheme{
             ofColor backgroundOnMouseOver = ofColor::fromHex(0x777777);
             ofColor backgroundOnMouseDown = ofColor::fromHex(0x222222);
             ofColor inputAreaBackground = ofColor::fromHex(0x303030);
-            
+
         // component specific colors //
             struct {
                 ofColor fill = ofColor::fromHex(0x2FA1D6);
                 ofColor text = ofColor::fromHex(0x2FA1D6);
             } slider;
-            
+
             struct {
                 ofColor text = ofColor::fromHex(0x00FF00);
                 ofColor highlight = ofColor::fromHex(0x688EB5);
                 ofColor backgroundOnActive = ofColor::fromHex(0x777777);
             } textInput;
-            
+
             struct {
                 ofColor border = ofColor::fromHex(0xEEEEEE);
             } colorPicker;
-            
+
             struct {
                 ofColor line = ofColor::fromHex(0xEEEEEE);
                 ofColor ball = ofColor::fromHex(0xEEEEEE);
             } pad2d;
-            
+
             struct{
                 ofColor lines = ofColor::fromHex(0xEEEEEE);
                 ofColor fills = ofColor::fromHex(0xEEEEEE);
             } graph;
-            
+
             struct {
                 struct{
                     ofColor label = ofColor::fromHex(0x303030);
@@ -130,13 +130,13 @@ class ofxDatGuiTheme{
                     ofColor button = ofColor::fromHex(0x555555);
                 } selected;
             } matrix;
-            
+
         } color;
-    
+
     /*
         colored stripes that appear on the left edge of the component
     */
-    
+
         struct {
             int width = 2.0f;
             bool visible = true;
@@ -151,24 +151,24 @@ class ofxDatGuiTheme{
             ofColor textInput = ofColor::fromHex(0x1ED36F);
             ofColor colorPicker = ofColor::fromHex(0xFFD00B);
         } stripe;
-    
+
 
     /*
         component border, disabled by default
     */
-    
+
         struct{
             int width = 1.0f;
             bool visible = false;
             ofColor color = hex(0x000000);
         } border;
-    
+
     /*
         layout, sizing and rendering rules
     */
-    
+
         struct {
-        
+
         // general rules that are shared by all components //
             float width = 320.0f;
             float height = 26.0f;
@@ -179,45 +179,45 @@ class ofxDatGuiTheme{
             float labelMargin = 24.0f;
             float breakHeight = 3.0f;
             bool upperCaseLabels = true;
-            
+
         // component specific rules & settings //
-        
+
             struct {
                 int highlightPadding = 5;
                 bool forceUpperCase = true;
             } textInput;
-        
+
             struct {
                 int height = 82;
                 int ballSize = 5;
                 int lineWeight = 1;
             } pad2d;
-        
+
             struct {
                 int height = 70;
                 int pointSize = 2;
                 int lineWeight = 2;
             } graph;
-        
+
             struct {
                 int height = 82;
                 int buttonSize = 27;
             } matrix;
-            
+
         } layout;
-    
+
     /*
         typography & icons
     */
-    
+
         static string AssetPath;
-    
+
         struct {
-            int size = 6;
+            int size = 8;
             string file = AssetPath + "ofxbraitsch/fonts/Verdana.ttf";
             shared_ptr<ofxSmartFont> ptr;
         } font;
-    
+
         struct{
             shared_ptr<ofImage> rainbow = make_shared<ofImage>();
             shared_ptr<ofImage> radioOn = make_shared<ofImage>();
@@ -235,6 +235,3 @@ class ofxDatGuiTheme{
         }
 
 };
-
-
-
