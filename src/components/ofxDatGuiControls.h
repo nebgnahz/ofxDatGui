@@ -95,15 +95,15 @@ class ofxDatGuiHeader : public ofxDatGuiButton {
 class ofxDatGuiFooter : public ofxDatGuiButton {
 
     public:
-    
+
         ofxDatGuiFooter() : ofxDatGuiButton("collapse controls")
         {
-            mGuiCollapsed = false;
+            mGuiCollapsed = true;
             mLabelCollapsed = "expand controls";
             mLabelExpanded = "collapse controls";
             setTheme(ofxDatGuiComponent::theme.get());
         }
-    
+
         void setTheme(ofxDatGuiTheme* theme)
         {
             setComponentStyle(theme);
