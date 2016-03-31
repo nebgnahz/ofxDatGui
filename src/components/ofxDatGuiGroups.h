@@ -25,6 +25,7 @@
 #include "ofxDatGuiButton.h"
 #include "ofxDatGuiSlider.h"
 #include "ofxDatGuiTextInput.h"
+#include "ofxDatGuiTextBlock.h"
 #include "ofxDatGuiFRM.h"
 #include "ofxDatGui2dPad.h"
 #include "ofxDatGuiColorPicker.h"

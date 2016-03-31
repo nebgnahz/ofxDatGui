@@ -290,6 +290,13 @@ ofxDatGuiTextInput* ofxDatGui::addTextInput(string label, string value)
     return input;
 }
 
+ofxDatGuiTextBlock* ofxDatGui::addTextBlock(string text)
+{
+    ofxDatGuiTextBlock* block = new ofxDatGuiTextBlock(text);
+    attachItem(block);
+    return block;
+}
+
 ofxDatGuiColorPicker* ofxDatGui::addColorPicker(string label, ofColor color)
 {
     ofxDatGuiColorPicker* picker = new ofxDatGuiColorPicker(label, color);
