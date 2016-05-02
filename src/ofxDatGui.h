@@ -33,14 +33,18 @@ class ofxDatGui : public ofxDatGuiInteractiveObject
         ofxDatGui(ofxDatGuiAnchor anchor = ofxDatGuiAnchor::TOP_LEFT);
 
         void draw();
-        void focus();
         void update();
+        void focus();
+        void expand();
+        void toggle();
+        void collapse();
 
         void setWidth(int width, float labelWidth = 0.35f);
         void setVisible(bool visible);
         void setEnabled(bool enabled);
         void setOpacity(float opacity);
         void setPosition(int x, int y);
+        void setPosition(ofxDatGuiAnchor anchor);
         void setTheme(ofxDatGuiTheme* t);
         void setAutoDraw(bool autodraw, int priority = 0);
         void setLabelAlignment(ofxDatGuiAlignment align);

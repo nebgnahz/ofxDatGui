@@ -32,7 +32,7 @@ class ofxDatGuiHeader : public ofxDatGuiButton {
             mDraggable = draggable;
             setTheme(ofxDatGuiComponent::theme.get());
         }
-    
+
         void setTheme(ofxDatGuiTheme* theme)
         {
             setComponentStyle(theme);
@@ -41,22 +41,22 @@ class ofxDatGuiHeader : public ofxDatGuiButton {
             mStyle.height = mStyle.height * .8;
             setLabelAlignment(ofxDatGuiAlignment::CENTER);
         }
-    
+
         void setDraggable(bool draggable)
         {
             mDraggable = draggable;
         }
-    
+
         bool getDraggable()
         {
             return mDraggable;
         }
-    
+
         ofPoint getDragOffset()
         {
             return mDragOffset;
         }
-    
+
     protected:
 
         void onMouseEnter(ofPoint m)
@@ -64,20 +64,20 @@ class ofxDatGuiHeader : public ofxDatGuiButton {
         // disable hover state if we're not draggable //
             if (mDraggable) ofxDatGuiComponent::onMouseEnter(m);
         }
-    
+
         void onMousePress(ofPoint m)
         {
             mDragOffset = ofPoint(m.x-this->x,m.y-this->y);
             ofxDatGuiComponent::onMousePress(m);
         }
-    
+
         void onMouseRelease(ofPoint m)
         {
             mDragOffset = m;
             ofxDatGuiComponent::onFocusLost();
             ofxDatGuiComponent::onMouseRelease(m);
         }
-    
+
     // allow panel to be dragged around //
         void onFocusLost() {}
     // force header label to always be centered //
@@ -85,7 +85,7 @@ class ofxDatGuiHeader : public ofxDatGuiButton {
         {
             ofxDatGuiComponent::setLabelAlignment(ofxDatGuiAlignment::CENTER);
         }
-    
+
     private:
         bool mDraggable;
         ofPoint mDragOffset;
@@ -98,7 +98,7 @@ class ofxDatGuiFooter : public ofxDatGuiButton {
 
         ofxDatGuiFooter() : ofxDatGuiButton("collapse controls")
         {
-            mGuiCollapsed = true;
+            mGuiExpanded = true;
             mLabelCollapsed = "expand controls";
             mLabelExpanded = "collapse controls";
             setTheme(ofxDatGuiComponent::theme.get());
@@ -112,49 +112,53 @@ class ofxDatGuiFooter : public ofxDatGuiButton {
             mStyle.height = mStyle.height * .8;
             setLabelAlignment(ofxDatGuiAlignment::CENTER);
         }
-    
+
         void setLabelWhenExpanded(string label)
         {
             mLabelExpanded = label;
-            if (!mGuiCollapsed) setLabel(mLabelExpanded);
+            if (mGuiExpanded) setLabel(mLabelExpanded);
         }
-    
+
         void setLabelWhenCollapsed(string label)
         {
             mLabelCollapsed = label;
-            if (mGuiCollapsed) setLabel(mLabelCollapsed);
+            if (!mGuiExpanded) setLabel(mLabelCollapsed);
         }
-    
-        void setY(int y)
+
+//        void setY(int y)
+//        {
+//            this->y = y;
+//        }
+
+        void setExpanded(bool expanded)
         {
-            this->y = y;
-        }
-    
-    protected:
-    
-        void onMouseRelease(ofPoint m)
-        {
-            mGuiCollapsed = !mGuiCollapsed;
-            ofxDatGuiComponent::onMouseRelease(m);
-        // dispatch event out to main application //
-            ofxDatGuiInternalEvent e(ofxDatGuiEventType::GUI_TOGGLED, mIndex);
-            internalEventCallback(e);
-            if (!mGuiCollapsed){
+            mGuiExpanded = expanded;
+            if (mGuiExpanded){
                 setLabel(mLabelExpanded);
             }   else{
                 setLabel(mLabelCollapsed);
             }
         }
-    
+
+    protected:
+
+        void onMouseRelease(ofPoint m)
+        {
+            ofxDatGuiComponent::onMouseRelease(m);
+        // dispatch event out to main application //
+            ofxDatGuiInternalEvent e(ofxDatGuiEventType::GUI_TOGGLED, mIndex);
+            internalEventCallback(e);
+        }
+
     // force footer label to always be centered //
         void setLabelAlignment(ofxDatGuiAlignment align)
         {
             ofxDatGuiComponent::setLabelAlignment(ofxDatGuiAlignment::CENTER);
         }
-    
+
     private:
-        bool mGuiCollapsed;
+        bool mGuiExpanded;
         string mLabelExpanded;
         string mLabelCollapsed;
-    
+
 };
