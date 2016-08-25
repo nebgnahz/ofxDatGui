@@ -60,10 +60,10 @@ void ofxDatGui::init()
     mWidth = theme->layout.width;
     mRowSpacing = theme->layout.vMargin;
     mGuiBackground = theme->color.guiBackground;
-    
+
 // enable autodraw by default //
     setAutoDraw(true);
-    
+
 // assign focus to this newly created gui //
     mActiveGui = this;
     mGuis.push_back(this);
@@ -71,7 +71,7 @@ void ofxDatGui::init()
     ofAddListener(ofEvents().windowResized, this, &ofxDatGui::onWindowResized, OF_EVENT_ORDER_BEFORE_APP);
 }
 
-/* 
+/*
     public api
 */
 
@@ -211,6 +211,11 @@ int ofxDatGui::getHeight()
     return mHeight;
 }
 
+bool ofxDatGui::getExpanded()
+{
+    return mExpanded;
+}
+
 ofPoint ofxDatGui::getPosition()
 {
     return ofPoint(mPosition.x, mPosition.y);
@@ -226,7 +231,7 @@ string ofxDatGui::getAssetPath()
     return ofxDatGuiTheme::AssetPath;
 }
 
-/* 
+/*
     add component methods
 */
 
@@ -769,7 +774,7 @@ void ofxDatGui::layoutGui()
     mGuiBounds = ofRectangle(mPosition.x, mPosition.y, mWidth, mHeight);
 }
 
-/* 
+/*
     update & draw loop
 */
 
@@ -791,7 +796,7 @@ void ofxDatGui::update()
     mWidthChanged = false;
     mThemeChanged = false;
     mAlignmentChanged = false;
-    
+
     // check for gui focus change //
     if (ofGetMousePressed() && mActiveGui->mMoving == false){
         ofPoint mouse = ofPoint(ofGetMouseX(), ofGetMouseY());
@@ -883,5 +888,3 @@ void ofxDatGui::onWindowResized(ofResizeEventArgs &e)
 {
     if (mAnchor != ofxDatGuiAnchor::NO_ANCHOR) anchorGui();
 }
-
-
