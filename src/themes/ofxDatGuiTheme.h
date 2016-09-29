@@ -48,23 +48,6 @@ class ofxDatGuiTheme{
 
         void init()
         {
-            if (ofxDatGuiIsRetina()){
-                font.size *= 2;
-                stripe.width *= 2;
-                layout.width = 540;
-                layout.height *= 2;
-                layout.padding *= 2;
-                layout.vMargin *= 2;
-                layout.iconSize *= 2;
-                layout.labelWidth = 190;
-                layout.graph.height *=2;
-                layout.pad2d.height *=2;
-                layout.pad2d.ballSize *=2;
-                layout.pad2d.lineWeight *=2;
-                layout.matrix.height *=2;
-                layout.matrix.buttonSize = 47;
-                layout.textInput.highlightPadding *= 2;
-            }
             font.ptr = ofxSmartFont::add(font.file, font.size);
 
             icon.radioOn->load(icon.radioOnPath);
