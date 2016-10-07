@@ -86,6 +86,9 @@ class ofxDatGuiTimeGraph : public ofxDatGuiComponent {
         {
             float px = this->x + mPlotterRect.x;
             float py = this->y + mPlotterRect.y;
+#if defined(__arm__) || defined(__TARGET_ARCH_ARM) || defined(_M_ARM)
+            // no-op here
+#else
             glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
             glBegin(GL_TRIANGLE_STRIP);
             for (int i=0; i<pts.size(); i++) {
@@ -93,39 +96,52 @@ class ofxDatGuiTimeGraph : public ofxDatGuiComponent {
                 glVertex2f(px+ pts[i].x, py + pts[i].y);
             }
             glEnd();
+#endif
         }
 
         void drawOutline()
         {
             float px = this->x + mPlotterRect.x;
             float py = this->y + mPlotterRect.y;
+#if defined(__arm__) || defined(__TARGET_ARCH_ARM) || defined(_M_ARM)
+            // no-op here
+#else
             glLineWidth(mLineWeight);
             glBegin(GL_LINE_LOOP);
             glVertex2f(px+mPlotterRect.width, py+mPlotterRect.height);
             for (int i=0; i<pts.size(); i++) glVertex2f(px+pts[i].x, py+pts[i].y);
             glVertex2f(px, py+mPlotterRect.height);
             glEnd();
+#endif
         }
     
         void drawLines()
         {
             float px = this->x + mPlotterRect.x;
             float py = this->y + mPlotterRect.y;
+#if defined(__arm__) || defined(__TARGET_ARCH_ARM) || defined(_M_ARM)
+            // no-op here
+#else
             glLineWidth(mLineWeight);
             glBegin(GL_LINE_STRIP);
             for (int i=0; i<pts.size(); i++) glVertex2f(px+pts[i].x, py+pts[i].y);
             glEnd();
+#endif
         }
     
         void drawPoints()
         {
             float px = this->x + mPlotterRect.x;
             float py = this->y + mPlotterRect.y;
+#if defined(__arm__) || defined(__TARGET_ARCH_ARM) || defined(_M_ARM)
+            // no-op here
+#else
             glPointSize(mLineWeight);
             glLineWidth(mLineWeight);
             glBegin(GL_POINTS);
             for (int i=0; i<pts.size(); i++) glVertex2f(px+pts[i].x, py+pts[i].y);
             glEnd();
+#endif
         }
     
         void setPosition(int x, int y)
@@ -304,7 +320,3 @@ class ofxDatGuiValuePlotter : public ofxDatGuiTimeGraph {
         float mMax;
         float mSpeed;
 };
-
-
-
-
