@@ -77,7 +77,11 @@ class ofxDatGuiTimeGraph : public ofxDatGuiComponent {
                 ofxDatGuiComponent::draw();
                 ofSetColor(mStyle.color.inputArea);
                 ofDrawRectangle(x + mPlotterRect.x, y + mPlotterRect.y, mPlotterRect.width, mPlotterRect.height);
+#if defined(__arm__) || defined(__TARGET_ARCH_ARM) || defined(_M_ARM)
+                // no-op here
+#else
                 glColor3ub(mColor.fills.r, mColor.fills.g, mColor.fills.b);
+#endif
                 (*this.*mDrawFunc)();
             ofPopStyle();
         }
