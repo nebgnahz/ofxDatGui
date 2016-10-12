@@ -272,7 +272,7 @@ class ofxDatGuiScrollView : public ofxDatGuiComponent {
         {
             if (scrollViewEventCallback != nullptr) {
                 int i = 0;
-                for(i; i<children.size(); i++) if (children[i] == e.target) break;
+                for(; i<children.size(); i++) if (children[i] == e.target) break;
                 ofxDatGuiScrollViewEvent e1(this, e.target, i);
                 scrollViewEventCallback(e1);
             }   else{
